@@ -1,27 +1,11 @@
-# Angular
+# First Step
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.2.
+Make sure node.js is installed. If you don't have it, download the recommended version from here: https://nodejs.org/en. Then check if it is installed by opening command prompt and run the following command `node -v`
 
-## Development server
+# Second Step
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Open the project, preferably in Intellij or an IDE from Jetbrains, and run in the terminal `npm install`. This will create a node_modules directory which has all the dependencies.
 
-## Code scaffolding
+# Third Step
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Now we can start the project. Run `ng serve` or in Intellij you should have on the top right `Angular CLI Server`, you can also run that. There should appear a link with the localhost. Press the link and the app should open in the browser.
