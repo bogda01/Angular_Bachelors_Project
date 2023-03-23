@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 
-import { ChartComponent } from './chart/chart/chart.component';
+import { ChartComponent } from './chart/chart.component';
 import { ChartModule } from 'primeng/chart';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
@@ -14,9 +14,17 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { RippleModule } from 'primeng/ripple';
 import { TabViewModule } from 'primeng/tabview';
+import { Chart2Component } from './chart2/chart2.component';
+import { PortfolioComponent } from './portfolio/portfolio.component';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
-  declarations: [AppComponent, ChartComponent],
+  declarations: [
+    AppComponent,
+    ChartComponent,
+    Chart2Component,
+    PortfolioComponent,
+  ],
   imports: [
     BrowserModule,
     ChartModule,
@@ -29,6 +37,7 @@ import { TabViewModule } from 'primeng/tabview';
     TabViewModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    TableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
