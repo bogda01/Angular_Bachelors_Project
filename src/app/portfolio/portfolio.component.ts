@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Stock } from '../model/stock';
 
 @Component({
-  selector: 'app-portfolio',
+  selector: 'portfolio',
   templateUrl: './portfolio.component.html',
   styleUrls: ['./portfolio.component.css'],
 })

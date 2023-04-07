@@ -17,6 +17,10 @@ import { TabViewModule } from 'primeng/tabview';
 import { Chart2Component } from './chart2/chart2.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { TableModule } from 'primeng/table';
+import { SingleStockComponent } from './single-stock/single-stock.component';
+import { AppRoutingModule } from './app-routing.module';
+import { RouterLink } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +28,8 @@ import { TableModule } from 'primeng/table';
     ChartComponent,
     Chart2Component,
     PortfolioComponent,
+    SingleStockComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +44,8 @@ import { TableModule } from 'primeng/table';
     BrowserAnimationsModule,
     HttpClientModule,
     TableModule,
+    AppRoutingModule,
+    RouterLink,
   ],
   providers: [],
   bootstrap: [AppComponent],

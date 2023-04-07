@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-chart2',
+  selector: 'chart2',
   templateUrl: './chart2.component.html',
   styleUrls: ['./chart2.component.css'],
 })

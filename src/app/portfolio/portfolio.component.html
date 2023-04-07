@@ -8,7 +8,7 @@
   </ng-template>
   <ng-template pTemplate="body" let-stock>
     <tr>
-      <td>{{stock.symbol}}</td>
+      <td><a routerLink="/single-stock">{{stock.symbol}}</a></td>
       <td>{{stock.name}}</td>
       <td>{{stock.price}}</td>
     </tr>
