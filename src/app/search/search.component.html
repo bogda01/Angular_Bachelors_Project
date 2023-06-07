@@ -1,0 +1,3 @@
+<p-autoComplete [(ngModel)]="ticker" [suggestions]="suggestions" (completeMethod)="suggest($event)"
+                placeholder="Enter stock ticker..." (keydown.enter)="searchStock()"></p-autoComplete>
+<p-button label="Search" (click)="searchStock()"></p-button>

@@ -1,0 +1,6 @@
+<div *ngIf="stockData">
+  <h1>Stock Details for {{ ticker }}</h1>
+  <div class="card">
+    <p-chart type="line" [data]="stockDataChart"></p-chart>
+  </div>
+</div>

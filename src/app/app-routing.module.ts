@@ -1,14 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SingleStockComponent } from './single-stock/single-stock.component';
-import { HomeComponent } from './home/home.component'; // CLI imports router
+import {StockDetailComponent} from "./stock-detail/stock-detail.component";
 
 const routes: Routes = [
-  {
-    path: 'single-stock',
-    component: SingleStockComponent,
-  },
-  { path: '', component: HomeComponent },
+  { path: 'stock/:ticker', component: StockDetailComponent },
+  { path: '**', redirectTo: '/' },
 ]; // sets up routes constant where you define your routes
 
 // configures NgModule imports and exports
