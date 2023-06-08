@@ -4,7 +4,7 @@ Make sure node.js is installed. If you don't have it, download the recommended v
 
 # Second Step
 
-Make sure you are inside the folder Angular
+Change to the development branch. Make sure you are inside the folder Angular
 
 # Third Step
 
