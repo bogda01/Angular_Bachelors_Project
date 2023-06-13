@@ -19,12 +19,14 @@ import { RouterLink } from '@angular/router';
 import { SearchComponent } from './search/search.component';
 import {AutoCompleteModule} from "primeng/autocomplete";
 import { StockDetailComponent } from './stock-detail/stock-detail.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
     StockDetailComponent,
+    HomeComponent,
   ],
     imports: [
         BrowserModule,

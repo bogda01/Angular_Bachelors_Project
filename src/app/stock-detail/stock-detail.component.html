@@ -1,6 +1,28 @@
-<div *ngIf="stockData">
-  <h1>Stock Details for {{ ticker }}</h1>
-  <div class="card">
-    <p-chart type="line" [data]="stockDataChart"></p-chart>
+<div class="container">
+  <div class="top-bar">
+    <a routerLink="/">
+      <div class="logo">
+        <img src="assets/logo_not_bought.png" alt="Logo" class="logo">
+      </div>
+    </a>
+    <div class="search">
+      <app-search></app-search>
+    </div>
+  </div>
+  <div *ngIf="stockData" class="stock-details">
+    <h1>Stock Details for {{ ticker }}</h1>
+    <div class="card">
+      <p-chart type="line" [data]="stockDataChart"></p-chart>
+      <div class="tabs">
+        <p-tabView>
+          <p-tabPanel header="Risk Management">
+            <p>Content 1</p>
+          </p-tabPanel>
+          <p-tabPanel header="Predictions">
+            <p>Content 2</p>
+          </p-tabPanel>
+        </p-tabView>
+      </div>
+    </div>
   </div>
 </div>

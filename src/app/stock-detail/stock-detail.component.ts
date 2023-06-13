@@ -35,12 +35,17 @@ export class StockDetailComponent implements OnInit {
             labels: this.stockDataKeys.map((key) => key.substring(0, 4)), // Extracting the year from the date string
             datasets: [
               {
-                label: 'Adj Close',
+                label: 'Price',
                 data: this.stockDataKeys.map((key) => this.stockData[key]['Adj Close']),
                 fill: false,
                 borderColor: '#4bc0c0'
               }
-            ]
+            ],
+            options: {
+              tooltips: {
+                enabled: false,
+              },
+            },
           };
         },
         (error) => {
