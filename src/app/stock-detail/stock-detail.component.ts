@@ -14,6 +14,7 @@ export class StockDetailComponent implements OnInit {
   stockData: StockData = {};
   stockDataKeys: string[] = [];
   stockDataChart: any;
+  chartOptions: any;
 
   constructor(private route: ActivatedRoute, private stockService: StockService) {}
 
@@ -30,22 +31,37 @@ export class StockDetailComponent implements OnInit {
           this.stockData = data;
           this.stockDataKeys = Object.keys(this.stockData);
 
-          // Prepare chart data and options
+          // Prepare chart data
           this.stockDataChart = {
             labels: this.stockDataKeys.map((key) => key.substring(0, 4)), // Extracting the year from the date string
             datasets: [
               {
-                label: 'Price',
+                type:'line',
                 data: this.stockDataKeys.map((key) => this.stockData[key]['Adj Close']),
                 fill: false,
-                borderColor: '#4bc0c0'
+                pointStyle:false
               }
-            ],
-            options: {
-              tooltips: {
-                enabled: false,
+            ]
+          };
+
+          // Set chart options
+          this.chartOptions = {
+
+            plugins: {
+              legend: {
+                display: false
               },
+              tooltip: {
+                label: 'Price',
+                enabled: true// <-- this option disables tooltips
+              }
+              },
+            scales: {
+              y: {
+                beginAtZero: true // Start the y-axis from zero
+              }
             },
+            responsive: true // Make the chart responsive
           };
         },
         (error) => {
