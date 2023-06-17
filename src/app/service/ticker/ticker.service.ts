@@ -12,6 +12,7 @@ export class TickerService {
   constructor(private http: HttpClient) { }
 
   getTickers() {
+    this.data = [];
     return new Promise((resolve, reject) => {
       this.http.get('assets/constituents.csv', {responseType: 'text'})
         .subscribe(data => {

@@ -38,6 +38,9 @@ export class SearchComponent implements OnInit {
 
   suggest(event: any) {
     const query = event.query;
-    this.suggestions = this.tickerService.data.filter(ticker => ticker.toLowerCase().startsWith(query.toLowerCase()));
+    this.suggestions = Array.from(new Set(
+      this.tickerService.data.filter(ticker => ticker.toLowerCase().startsWith(query.toLowerCase()))
+    ));
   }
+
 }
