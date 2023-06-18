@@ -40,3 +40,7 @@
   height:2vh;
   width: 0.5vw;
 }
+
+::ng-deep .p-hidden-accessible > input {
+  display: none;
+}

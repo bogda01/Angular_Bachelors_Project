@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { StockService } from "../../../service/stock/stock.service";
-import { PredictionData } from "../../../model/prediction";
-import { StockData } from "../../../model/stockData";
+import { Component } from '@angular/core';
+import {PredictionData} from "../../../model/prediction";
+import {StockData} from "../../../model/stockData";
+import {ActivatedRoute, ParamMap} from "@angular/router";
+import {StockService} from "../../../service/stock/stock.service";
+import {switchMap} from "rxjs/operators";
 
 @Component({
-  selector: 'app-lstm-chart',
-  templateUrl: './lstm-chart.component.html',
-  styleUrls: ['./lstm-chart.component.css']
+  selector: 'app-gru-chart',
+  templateUrl: './gru-chart.component.html',
+  styleUrls: ['./gru-chart.component.css']
 })
-export class LstmChartComponent implements OnInit {
+export class GruChartComponent {
   ticker = '';
-  lstmData: PredictionData = {};
+  gruData: PredictionData = {};
   stockData: StockData = {};
   stockDataChart: any;
   chartOptions: any;
@@ -24,12 +24,12 @@ export class LstmChartComponent implements OnInit {
       .pipe(
         switchMap((params: ParamMap) => {
           this.ticker = params.get('ticker')!;
-          return this.stockService.getLSTMStock(this.ticker);
+          return this.stockService.getGRUStock(this.ticker);
         })
       )
       .subscribe(
-        (lstmData: PredictionData) => {
-          this.lstmData = lstmData;
+        (gruData: PredictionData) => {
+          this.gruData = gruData;
 
           this.stockService.getStock(this.ticker).subscribe(
             (stockData: StockData) => {
@@ -37,13 +37,13 @@ export class LstmChartComponent implements OnInit {
 
               // Prepare chart data
               const stockDataKeys = Object.keys(this.stockData);
-              const lstmDataKeys = Object.keys(this.lstmData);
-              const labels = [...stockDataKeys, ...lstmDataKeys].map((key)=>key.substring(0,4));
+              const gruDataKeys = Object.keys(this.gruData);
+              const labels = [...stockDataKeys, ...gruDataKeys].map((key)=>key.substring(0,4));
 
               const stockDataValues = stockDataKeys.map((key) => this.stockData[key]['Adj Close']);
-              const lstmDataValues = lstmDataKeys.map((key) => this.lstmData[key]['Adj Close']);
+              const gruDataValues = gruDataKeys.map((key) => this.gruData[key]['Adj Close']);
               const stockDataLength = stockDataValues.length;
-              const lstmDataAdjusted = Array(stockDataLength).fill(null).concat(lstmDataValues);
+              const gruDataAdjusted = Array(stockDataLength).fill(null).concat(gruDataValues);
 
               this.stockDataChart = {
                 labels: labels,
@@ -58,11 +58,11 @@ export class LstmChartComponent implements OnInit {
                   },
                   {
                     type: 'line',
-                    label: 'LSTM Prediction',
-                    data: lstmDataAdjusted,
+                    label: 'GRU Prediction',
+                    data: gruDataAdjusted,
                     fill: false,
                     pointStyle: false,
-                    borderColor: 'red' // Set color for LSTM line
+                    borderColor: 'red' // Set color for gru line
                   }
                 ]
               };
@@ -92,7 +92,7 @@ export class LstmChartComponent implements OnInit {
           );
         },
         (error) => {
-          console.error('Failed to get LSTM stock data:', error);
+          console.error('Failed to get GRU stock data:', error);
         }
       );
   }

@@ -21,6 +21,10 @@ import {AutoCompleteModule} from "primeng/autocomplete";
 import { StockDetailComponent } from './stock-detail/stock-detail.component';
 import { HomeComponent } from './home/home.component';
 import { LstmChartComponent } from './tab-views/predictions/lstm-chart/lstm-chart.component';
+import { CnnChartComponent } from './tab-views/predictions/cnn-chart/cnn-chart.component';
+import { GruChartComponent } from './tab-views/predictions/gru-chart/gru-chart.component';
+import { ProphetChartComponent } from './tab-views/predictions/prophet-chart/prophet-chart.component';
+import {DropdownModule} from "primeng/dropdown";
 
 @NgModule({
   declarations: [
@@ -29,6 +33,9 @@ import { LstmChartComponent } from './tab-views/predictions/lstm-chart/lstm-char
     StockDetailComponent,
     HomeComponent,
     LstmChartComponent,
+    CnnChartComponent,
+    GruChartComponent,
+    ProphetChartComponent,
   ],
     imports: [
         BrowserModule,
@@ -46,6 +53,7 @@ import { LstmChartComponent } from './tab-views/predictions/lstm-chart/lstm-char
         AppRoutingModule,
         RouterLink,
         AutoCompleteModule,
+        DropdownModule
     ],
   providers: [],
   bootstrap: [AppComponent],

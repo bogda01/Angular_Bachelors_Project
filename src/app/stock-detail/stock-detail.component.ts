@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { StockService } from '../service/stock/stock.service';
 import { StockData } from '../model/stockData';
+import {SelectItem} from "primeng/api";
 
 @Component({
   selector: 'app-stock-detail',
@@ -15,6 +16,15 @@ export class StockDetailComponent implements OnInit {
   stockDataKeys: string[] = [];
   stockDataChart: any;
   chartOptions: any;
+
+  // dropdown
+  chartTypes: SelectItem[] = [
+    { label: 'Prophet Chart', value: 'prophet' },
+    { label: 'LSTM Chart', value: 'lstm' },
+    { label: 'GRU Chart', value: 'gru' },
+    { label: 'CNN Chart', value: 'cnn' },
+  ];
+  selectedChartType: SelectItem = this.chartTypes[0];
 
   constructor(private route: ActivatedRoute, private stockService: StockService) {}
 

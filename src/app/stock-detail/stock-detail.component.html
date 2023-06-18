@@ -19,7 +19,13 @@
             <p>Content 1</p>
           </p-tabPanel>
           <p-tabPanel header="Predictions">
-            <app-lstm-chart></app-lstm-chart>
+            <p-dropdown [options]="chartTypes" [(ngModel)]="selectedChartType" optionLabel="label" [editable]="false" [filter]="false"></p-dropdown>
+            <ng-container [ngSwitch]="selectedChartType.value">
+              <app-prophet-chart *ngSwitchCase="'prophet'"></app-prophet-chart>
+              <app-lstm-chart *ngSwitchCase="'lstm'"></app-lstm-chart>
+              <app-gru-chart *ngSwitchCase="'gru'"></app-gru-chart>
+              <app-cnn-chart *ngSwitchCase="'cnn'"></app-cnn-chart>
+            </ng-container>
           </p-tabPanel>
         </p-tabView>
       </div>

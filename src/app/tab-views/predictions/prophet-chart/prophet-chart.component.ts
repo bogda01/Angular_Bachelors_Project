@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { StockService } from "../../../service/stock/stock.service";
-import { PredictionData } from "../../../model/prediction";
-import { StockData } from "../../../model/stockData";
+import { Component } from '@angular/core';
+import {PredictionData} from "../../../model/prediction";
+import {StockData} from "../../../model/stockData";
+import {ActivatedRoute, ParamMap} from "@angular/router";
+import {StockService} from "../../../service/stock/stock.service";
+import {switchMap} from "rxjs/operators";
 
 @Component({
-  selector: 'app-lstm-chart',
-  templateUrl: './lstm-chart.component.html',
-  styleUrls: ['./lstm-chart.component.css']
+  selector: 'app-prophet-chart',
+  templateUrl: './prophet-chart.component.html',
+  styleUrls: ['./prophet-chart.component.css']
 })
-export class LstmChartComponent implements OnInit {
+export class ProphetChartComponent {
   ticker = '';
-  lstmData: PredictionData = {};
+  prophetData: PredictionData = {};
   stockData: StockData = {};
   stockDataChart: any;
   chartOptions: any;
@@ -24,26 +24,23 @@ export class LstmChartComponent implements OnInit {
       .pipe(
         switchMap((params: ParamMap) => {
           this.ticker = params.get('ticker')!;
-          return this.stockService.getLSTMStock(this.ticker);
+          return this.stockService.getProphetStock(this.ticker);
         })
       )
       .subscribe(
-        (lstmData: PredictionData) => {
-          this.lstmData = lstmData;
+        (prophetData: PredictionData) => {
+          this.prophetData = prophetData;
 
           this.stockService.getStock(this.ticker).subscribe(
             (stockData: StockData) => {
               this.stockData = stockData;
 
               // Prepare chart data
-              const stockDataKeys = Object.keys(this.stockData);
-              const lstmDataKeys = Object.keys(this.lstmData);
-              const labels = [...stockDataKeys, ...lstmDataKeys].map((key)=>key.substring(0,4));
+              const prophetDataKeys = Object.keys(this.prophetData);
+              const labels = prophetDataKeys.map((key)=>key.substring(0,4));
 
-              const stockDataValues = stockDataKeys.map((key) => this.stockData[key]['Adj Close']);
-              const lstmDataValues = lstmDataKeys.map((key) => this.lstmData[key]['Adj Close']);
-              const stockDataLength = stockDataValues.length;
-              const lstmDataAdjusted = Array(stockDataLength).fill(null).concat(lstmDataValues);
+              const stockDataValues = prophetDataKeys.map((key) => this.stockData[key] ? this.stockData[key]['Adj Close'] : null);
+              const prophetDataValues = prophetDataKeys.map((key) => this.prophetData[key]['Adj Close']);
 
               this.stockDataChart = {
                 labels: labels,
@@ -58,11 +55,11 @@ export class LstmChartComponent implements OnInit {
                   },
                   {
                     type: 'line',
-                    label: 'LSTM Prediction',
-                    data: lstmDataAdjusted,
+                    label: 'Prophet Prediction',
+                    data: prophetDataValues,
                     fill: false,
                     pointStyle: false,
-                    borderColor: 'red' // Set color for LSTM line
+                    borderColor: 'red' // Set color for Prophet line
                   }
                 ]
               };
@@ -92,8 +89,9 @@ export class LstmChartComponent implements OnInit {
           );
         },
         (error) => {
-          console.error('Failed to get LSTM stock data:', error);
+          console.error('Failed to get Prophet stock data:', error);
         }
       );
   }
 }
+
