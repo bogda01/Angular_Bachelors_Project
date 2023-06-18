@@ -25,6 +25,11 @@ import { CnnChartComponent } from './tab-views/predictions/cnn-chart/cnn-chart.c
 import { GruChartComponent } from './tab-views/predictions/gru-chart/gru-chart.component';
 import { ProphetChartComponent } from './tab-views/predictions/prophet-chart/prophet-chart.component';
 import {DropdownModule} from "primeng/dropdown";
+import { MacdChartComponent } from './tab-views/risk-management/macd-chart/macd-chart.component';
+import { MonteCarloChartComponent } from './tab-views/risk-management/monte-carlo-chart/monte-carlo-chart.component';
+import { RsiChartComponent } from './tab-views/risk-management/rsi-chart/rsi-chart.component';
+import { SmaChartComponent } from './tab-views/risk-management/sma-chart/sma-chart.component';
+import { VarComponent } from './tab-views/risk-management/var/var.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +41,11 @@ import {DropdownModule} from "primeng/dropdown";
     CnnChartComponent,
     GruChartComponent,
     ProphetChartComponent,
+    MacdChartComponent,
+    MonteCarloChartComponent,
+    RsiChartComponent,
+    SmaChartComponent,
+    VarComponent,
   ],
     imports: [
         BrowserModule,

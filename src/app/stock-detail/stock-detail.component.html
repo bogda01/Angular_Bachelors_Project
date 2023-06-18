@@ -16,8 +16,16 @@
       <div class="tabs">
         <p-tabView>
           <p-tabPanel header="Risk Management">
-            <p>Content 1</p>
+            <p-dropdown [options]="riskManagementTypes" [(ngModel)]="selectedRiskManagementType" optionLabel="label" [editable]="false" [filter]="false"></p-dropdown>
+            <ng-container [ngSwitch]="selectedRiskManagementType.value">
+              <app-sma-chart *ngSwitchCase="'sma'"></app-sma-chart>
+              <app-rsi-chart *ngSwitchCase="'rsi'"></app-rsi-chart>
+              <app-macd-chart *ngSwitchCase="'macd'"></app-macd-chart>
+              <app-monte-carlo-chart *ngSwitchCase="'monte'"></app-monte-carlo-chart>
+              <app-var *ngSwitchCase="'var'"></app-var>
+            </ng-container>
           </p-tabPanel>
+
           <p-tabPanel header="Predictions">
             <p-dropdown [options]="chartTypes" [(ngModel)]="selectedChartType" optionLabel="label" [editable]="false" [filter]="false"></p-dropdown>
             <ng-container [ngSwitch]="selectedChartType.value">

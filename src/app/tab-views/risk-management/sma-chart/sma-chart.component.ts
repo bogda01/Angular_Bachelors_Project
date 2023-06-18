@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
-import {PredictionData} from "../../../model/prediction";
 import {StockData} from "../../../model/stockData";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {StockService} from "../../../service/stock/stock.service";
+import {SMAData} from "../../../model/SMA";
 import {switchMap} from "rxjs/operators";
 
 @Component({
-  selector: 'app-prophet-chart',
-  templateUrl: './prophet-chart.component.html',
-  styleUrls: ['./prophet-chart.component.css']
+  selector: 'app-sma-chart',
+  templateUrl: './sma-chart.component.html',
+  styleUrls: ['./sma-chart.component.css']
 })
-export class ProphetChartComponent {
+export class SmaChartComponent {
+
   ticker = '';
-  prophetData: PredictionData = {};
+  smaData: SMAData = {};
   stockData: StockData = {};
   stockDataChart: any;
   chartOptions: any;
@@ -24,42 +25,50 @@ export class ProphetChartComponent {
       .pipe(
         switchMap((params: ParamMap) => {
           this.ticker = params.get('ticker')!;
-          return this.stockService.getProphetStock(this.ticker);
+          return this.stockService.getStock(this.ticker);
         })
       )
       .subscribe(
-        (prophetData: PredictionData) => {
-          this.prophetData = prophetData;
+        (stockData: StockData) => {
+          this.stockData = stockData;
 
-          this.stockService.getStock(this.ticker).subscribe(
-            (stockData: StockData) => {
-              this.stockData = stockData;
+          this.stockService.getSMAStock(this.ticker).subscribe(
+            (smaData: SMAData) => {
 
               // Prepare chart data
-              const prophetDataKeys = Object.keys(this.prophetData);
-              const labels = prophetDataKeys.map((key)=>key.substring(0,10));
+              const smaDataKeys = Object.keys(smaData);
+              const labels = smaDataKeys.map((key) => key.substring(0, 10));
 
-              const stockDataValues = prophetDataKeys.map((key) => this.stockData[key] ? this.stockData[key]['Adj Close'] : null);
-              const prophetDataValues = prophetDataKeys.map((key) => this.prophetData[key]['Adj Close']);
+              const stockDataValues = smaDataKeys.map((key) => this.stockData[key] ? this.stockData[key]['Adj Close'] : null);
+              const sma30Values = smaDataKeys.map((key) => smaData[key]['SMA_30']);
+              const sma100Values = smaDataKeys.map((key) => smaData[key]['SMA_100']);
 
               this.stockDataChart = {
                 labels: labels,
                 datasets: [
                   {
                     type: 'line',
-                    label: 'Prophet Prediction',
-                    data: prophetDataValues,
-                    fill: false,
+                    label: 'SMA_30',
+                    data: sma30Values,
                     pointStyle: false,
-                    borderColor: 'red' // Set color for Prophet line
+                    fill: false,
+                    borderColor: 'red' // Set color for SMA_30 line
+                  },
+                  {
+                    type: 'line',
+                    label: 'SMA_100',
+                    data: sma100Values,
+                    pointStyle: false,
+                    fill: false,
+                    borderColor: '#45eb09' // Set color for SMA_100 line
                   },
                   {
                     type: 'line',
                     label: 'Price History',
                     data: stockDataValues,
-                    fill: false,
                     pointStyle: false,
-                    borderColor: '#5da0e3' // Set color for stock line
+                    fill: false,
+                    borderColor: '#007bff' // Set color for stock line
                   }
                 ]
               };
@@ -71,8 +80,7 @@ export class ProphetChartComponent {
                     display: true
                   },
                   tooltip: {
-                    label: 'Price',
-                    enabled: true // <-- this option disables tooltips
+                    enabled: true // Enable tooltips
                   }
                 },
                 scales: {
@@ -84,14 +92,14 @@ export class ProphetChartComponent {
               };
             },
             (error) => {
-              console.error('Failed to get stock data:', error);
+              console.error('Failed to get SMA data:', error);
             }
           );
         },
         (error) => {
-          console.error('Failed to get Prophet stock data:', error);
+          console.error('Failed to get stock data:', error);
         }
       );
   }
-}
 
+}

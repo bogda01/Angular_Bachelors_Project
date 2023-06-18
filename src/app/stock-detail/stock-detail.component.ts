@@ -17,7 +17,17 @@ export class StockDetailComponent implements OnInit {
   stockDataChart: any;
   chartOptions: any;
 
-  // dropdown
+  // dropdown risk management
+  riskManagementTypes: SelectItem[] = [
+    { label: 'SMA Chart', value: 'sma' },
+    { label: 'RSI Chart', value: 'rsi' },
+    { label: 'MACD Chart', value: 'macd' },
+    { label: 'Monte Carlo Chart', value: 'monte' },
+    { label: 'Value at Risk', value: 'var' },
+  ];
+  selectedRiskManagementType: SelectItem = this.riskManagementTypes[0];
+
+  // dropdown predictions
   chartTypes: SelectItem[] = [
     { label: 'Prophet Chart', value: 'prophet' },
     { label: 'LSTM Chart', value: 'lstm' },
@@ -43,7 +53,7 @@ export class StockDetailComponent implements OnInit {
 
           // Prepare chart data
           this.stockDataChart = {
-            labels: this.stockDataKeys.map((key) => key.substring(0, 4)), // Extracting the year from the date string
+            labels: this.stockDataKeys.map((key) => key.substring(0, 10)), // Extracting the year from the date string
             datasets: [
               {
                 type:'line',

@@ -38,7 +38,7 @@ export class LstmChartComponent implements OnInit {
               // Prepare chart data
               const stockDataKeys = Object.keys(this.stockData);
               const lstmDataKeys = Object.keys(this.lstmData);
-              const labels = [...stockDataKeys, ...lstmDataKeys].map((key)=>key.substring(0,4));
+              const labels = [...stockDataKeys, ...lstmDataKeys].map((key)=>key.substring(0,10));
 
               const stockDataValues = stockDataKeys.map((key) => this.stockData[key]['Adj Close']);
               const lstmDataValues = lstmDataKeys.map((key) => this.lstmData[key]['Adj Close']);
@@ -54,7 +54,7 @@ export class LstmChartComponent implements OnInit {
                     data: stockDataValues,
                     fill: false,
                     pointStyle: false,
-                    borderColor: 'blue' // Set color for stock line
+                    borderColor: '#007bff' // Set color for stock line
                   },
                   {
                     type: 'line',

@@ -38,7 +38,7 @@ export class CnnChartComponent {
               // Prepare chart data
               const stockDataKeys = Object.keys(this.stockData);
               const cnnDataKeys = Object.keys(this.cnnData);
-              const labels = [...stockDataKeys, ...cnnDataKeys].map((key)=>key.substring(0,4));
+              const labels = [...stockDataKeys, ...cnnDataKeys].map((key)=>key.substring(0,10));
 
               const stockDataValues = stockDataKeys.map((key) => this.stockData[key]['Adj Close']);
               const cnnDataValues = cnnDataKeys.map((key) => this.cnnData[key]['Adj Close']);
@@ -54,7 +54,7 @@ export class CnnChartComponent {
                     data: stockDataValues,
                     fill: false,
                     pointStyle: false,
-                    borderColor: 'blue' // Set color for stock line
+                    borderColor: '#007bff' // Set color for stock line
                   },
                   {
                     type: 'line',
