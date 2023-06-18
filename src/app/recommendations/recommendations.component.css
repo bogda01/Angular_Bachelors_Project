@@ -1,0 +1,17 @@
+.recommendations h2 {
+  text-align: center;  /* Center align the title */
+  color: #007bff;
+  letter-spacing: 2px;
+}
+
+.recommendations ul {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0; /* Remove padding */
+  display: flex; /* Display the items in a line */
+  justify-content: space-around; /* Distribute the items evenly */
+  flex-wrap: wrap; /* Allow the items to wrap to the next line */
+}
+
+.recommendations li {
+  margin: 30px; /* Add space around each item */
+}

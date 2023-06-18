@@ -1,0 +1,10 @@
+<div class="recommendations">
+  <h2>Recommendations</h2>
+  <ul>
+    <li *ngFor="let stock of stocks">
+      <a [routerLink]="['/stock', stock]">
+        <p-button label="{{stock}}" styleClass="p-button-raised"></p-button>
+      </a>
+    </li>
+  </ul>
+</div>

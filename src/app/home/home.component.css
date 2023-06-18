@@ -1,14 +1,27 @@
 .container {
+  display: grid;
+  justify-content: center;
+  grid-gap: 5vh; /* change this value as per your needs */
+  height: 100vh;
+  padding: 5vh; /* this is to prevent items from sticking to the edges of the viewport */
+}
+
+.top {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  flex-direction: column;
+  grid-row: 1;
 }
 
 .logo {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin-bottom: 5vh;
 }
 
+.search-container {
+  /* margin-bottom no longer necessary as grid-gap handles spacing */
+}
+
+.recommendations-container {
+  grid-row: 2;
+}

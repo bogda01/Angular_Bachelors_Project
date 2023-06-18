@@ -30,6 +30,7 @@ import { MonteCarloChartComponent } from './tab-views/risk-management/monte-carl
 import { RsiChartComponent } from './tab-views/risk-management/rsi-chart/rsi-chart.component';
 import { SmaChartComponent } from './tab-views/risk-management/sma-chart/sma-chart.component';
 import { VarComponent } from './tab-views/risk-management/var/var.component';
+import { RecommendationsComponent } from './recommendations/recommendations.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { VarComponent } from './tab-views/risk-management/var/var.component';
     RsiChartComponent,
     SmaChartComponent,
     VarComponent,
+    RecommendationsComponent,
   ],
     imports: [
         BrowserModule,
