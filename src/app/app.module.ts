@@ -20,6 +20,7 @@ import { SearchComponent } from './search/search.component';
 import {AutoCompleteModule} from "primeng/autocomplete";
 import { StockDetailComponent } from './stock-detail/stock-detail.component';
 import { HomeComponent } from './home/home.component';
+import { LstmChartComponent } from './tab-views/predictions/lstm-chart/lstm-chart.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { HomeComponent } from './home/home.component';
     SearchComponent,
     StockDetailComponent,
     HomeComponent,
+    LstmChartComponent,
   ],
     imports: [
         BrowserModule,
