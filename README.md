@@ -15,4 +15,4 @@ Open the project, preferably in Intellij or an IDE from Jetbrains, and run in th
 Now we can start the project. Run `ng serve` or in Intellij you should have on the top right `Angular CLI Server`, you can also run that. There should appear a link with the localhost. Press the link and the app should open in the browser.
 
 # Comment
-The data won't be on GitLab because the folders containing the data have more than 100MB. They will be presented on the examination day. The data can be downloaded from src/assets from Github: https://github.com/bogda01/Angular_Bachelors_Project/tree/development
+The data won't be on GitLab because the folders containing the data have more than 100MB. They will be presented on the examination day. The data can be downloaded from src/assets from Github: https://github.com/bogda01/Angular_Bachelors_Project/tree/master
